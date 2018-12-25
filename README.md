@@ -1,5 +1,5 @@
 # Several-Simple-Regression-Prediction-Methods
-Several Simple Regression Prediction Methods（including-SVR, LR,  Lasso, ElasticNet, GB, Xgboost, lightGBM）  
+Several Simple Regression Prediction Methods（including-SVR, LR,  Lasso, ElasticNet, Gradient Boosting, Xgboost, lightGBM, Random Forest） 
 # Method description    
 [SVR]-Support Vector Regression    
 [LR]-Logistic Regression    
