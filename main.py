@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 
-##load data
+## load data
 df_train = pd.read_csv('zhengqi_train.txt',sep='\t')
 df_test = pd.read_csv('zhengqi_test.txt',sep='\t')
 train_x=df_train.drop(['target'],axis=1)
 all_data = pd.concat([train_x,df_test])
 
 
-##data visualization
+## data visualization
 import seaborn
 import matplotlib.pyplot as plt
 
