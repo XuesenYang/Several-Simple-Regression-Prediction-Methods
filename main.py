@@ -111,11 +111,12 @@ model_lgb = lgb.LGBMRegressor(objective='regression',num_leaves=5,
                                bagging_freq = 5, feature_fraction = 0.2319,
                                feature_fraction_seed=9, bagging_seed=9,
                                min_data_in_leaf =6, min_sum_hessian_in_leaf = 11)
-
+## Random Forest(RF)
+rf = RandomForestRegressor(n_estimators= 50, max_depth=25, min_samples_split=20,
+                                  min_samples_leaf=10,max_features='sqrt' ,oob_score=True, random_state=10)
 ## print result
 score = rmsle_cv(svr)
 print("\nSVR performance: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
-
 
 score = rmsle_cv(line)
 print("\nLine performance: {:.4f} ({:.4f})\n".format(score.mean(), score.std()))
@@ -146,6 +147,9 @@ model_xgb.fit(train_x_head,Y)
 score = rmsle_cv(model_lgb)
 print("LGBM performance: {:.4f} ({:.4f})\n" .format(score.mean(), score.std()))
 
+score = rmsle_cv(rf)
+print("RF performance: {:.4f} ({:.4f})\n" .format(score.mean(), score.std()))
+
 ## Predict test set and save results
 final = pd.DataFrame()
 df_test.drop(feat_scored_headnum,axis=1,inplace=True)
@@ -159,6 +163,7 @@ final['Kernel Ridge3'] = KRR3.predict(df_test)
 final['Gradient Boosting'] = GBoost.predict(df_test)
 final['Xgboost'] = model_xgb.predict(df_test)
 final['lightgbm'] = model_lgb.predict(df_test)
+final['RF'] = rf.predict(df_test)
 np.savetxt('final.txt',final)
 print('File saved!')
 
